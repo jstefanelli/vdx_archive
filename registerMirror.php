@@ -11,7 +11,7 @@ if(!isset($_POST['psw'])){
 }
 
 $myPsw = $_POST['psw'];
-if($myPsw == LOCAL_PSW){
+if($myPsw == LCL_PSW){
 	$db->query("INSERT INTO mirrors (address) VALUES(" . VDX_HOME . ")");
 	die("OK");
 }else{
