@@ -27,11 +27,10 @@ for($i = 1; $i <= $info->tot_parts; $i++){
     unlink(LCL_HOME . "/videos/" . $id . "/" . $name . "." . $i);
 }
 
+unlink(LCL_HOME . "/videos/" . $id . "/" . $name . ".status.json");
+
 echo("Ok");
 
-function is_ajax(){
-	return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == "xmlhttprequest";
-}
 
 
 ?>

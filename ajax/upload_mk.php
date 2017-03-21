@@ -8,6 +8,8 @@ class upload_info{
 	public $name;
 }
 
+include_once '../header.php';
+
 if(!is_ajax()){
 	die("Not ajax");
 }
@@ -33,7 +35,9 @@ $name = $_POST['name'];
 $n_parts = $_POST['n_parts'];
 $part_size = $_POST['part_size'];
 
-include_once '../header.php';
+if(!file_exists(LCL_HOME . "/videos")){
+	mkdir(LCL_HOME . "/videos");
+}
 
 if(file_exists(LCL_HOME . '/videos/' . $id . '/' . $name)){
 	die("Already Uploaded");
@@ -53,7 +57,3 @@ $jsonInfo = json_encode($info);
 file_put_contents(LCL_HOME. "/videos/" . $id . "/" . $name . ".status.json", $jsonInfo);
 
 die("OK");
-
-function is_ajax(){
-	return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == "xmlhttprequest";
-}
